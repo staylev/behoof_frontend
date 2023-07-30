@@ -1,10 +1,14 @@
+import Header from "./compnents/Header";
+import MainSlider from "./compnents/MainSlider";
+import Footer from "./compnents/Footer";
 
-import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <p>Тест</p>
+        <Header></Header>
+        <MainSlider/>
+        <Footer></Footer>
     </div>
   );
 }
