@@ -139,7 +139,8 @@ a {
 }
 
 a:hover {
-    color: black;
+    color: white;
+    font-weight: 500;
 }
 
 .main_header {
@@ -333,15 +334,238 @@ a:hover {
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
-    padding-right: 20px ;
+    padding-right: 20px;
     line-height: normal;
 }
- .foot{
+
+.foot {
     display: flex;
- }
- .nav_footer{
+}
+
+.nav_footer {
     display: flex;
     margin-left: 86px;
     margin-top: 41px;
     align-items: center;
- }
+}
+
+.tabs_custom {
+    border: none;
+}
+
+.nav-tabs .nav-link {
+    height: 60px;
+}
+
+.nav-tabs .nav-link.active {
+    background: transparent;
+    border: none;
+    color: #FFF;
+    font-family: Gilroy;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    border-bottom: 3px solid#618967;
+    box-shadow: 0px 0px 12px 0px rgba(114, 164, 121, 0.30);
+
+}
+
+.nav-tabs .nav-link:hover {
+    color: white;
+    font-weight: 500;
+    border: none;
+    border-bottom: 3px solid #618967;
+}
+
+.nav-link {
+    color: #CFCFCF;
+    font-family: Gilroy;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    transition: none
+}
+
+.tab_block {
+    margin-left: 81px;
+}
+
+.category_title {
+    display: flex;
+    align-items: center;
+}
+
+.line2 {
+    width: 33px;
+    height: 4px;
+    transform: rotate(90deg);
+    background: #618967;
+}
+
+.text_title_category {
+    color: #FFF;
+    font-family: Gilroy;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+}
+
+.cards {
+    display: flex;
+    gap: 20px;
+    overflow-x: scroll;
+    scrollbar-width: 1px;
+
+
+}
+
+.cards::-webkit-scrollbar {
+    background-color: transparent;
+    height: 5px;
+
+}
+
+.cards::-webkit-scrollbar-thumb {
+    background-color: #618967;
+
+}
+
+.card {
+    width: 325px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #494544 0%, #504B4A 100%);
+}
+
+.card:hover {
+    box-shadow: 0px 30px 45px 0px rgba(43, 40, 40, 0.60);
+}
+
+.title_card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.product_name {
+    color: #FFF;
+    font-family: Gilroy;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.massa {
+    color: #FFF;
+    font-family: Gilroy;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.product_description {
+    color: #CFCFCF;
+    width: 253px;
+    font-family: Gilroy;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px
+}
+
+.footer_cart {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.price {
+    color: #FFF;
+    font-family: Gilroy;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal
+}
+
+.but_cart {
+    width: 137px;
+    height: 44px;
+    border-radius: 10px;
+    background: #618967;
+    border: none;
+    color: #FFF;
+    font-family: Gilroy;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.line3 {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(270deg, rgba(255, 255, 255, 0.00) 0%, rgba(255, 255, 255, 0.20) 100%);
+}
+
+.sale {
+    margin-left: 82px;
+}
+
+.sales {
+    display: flex;
+    gap: 20px;
+    overflow-x: scroll;
+ 
+}
+
+.sales::-webkit-scrollbar {
+    background-color: transparent;
+    height: 5px;
+}
+
+.sales::-webkit-scrollbar-thumb {
+    background-color: #618967;
+}
+
+.cart_sale {
+    width: 440px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #494544 0%, #504B4A 100%);
+}
+
+.title_sale {
+    color: #FFF;
+    font-family: Gilroy;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.description_sale {
+    color: #A6A7AB;
+    font-family: Gilroy;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.data_end {
+    color: #6FA076;
+    font-family: Gilroy;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
