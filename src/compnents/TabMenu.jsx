@@ -15,7 +15,7 @@ const TabMenu = () => {
 
     return (
       <div className="container mb-5">
-        <div className="tab_block">
+        <div className=" ">
           <Tabs
             defaultActiveKey="-zac"
             id="justify-tab-example"

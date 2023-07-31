@@ -192,7 +192,6 @@ a:hover {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-left: 72px;
     width: 555px;
     height: 52px;
     border-radius: 10px;
@@ -435,7 +434,7 @@ a:hover {
 }
 
 .card {
-    width: 325px;
+    width: 100%;
     border-radius: 10px;
     background: linear-gradient(90deg, #494544 0%, #504B4A 100%);
 }
@@ -538,7 +537,7 @@ a:hover {
 }
 
 .cart_sale {
-    width: 440px;
+    width: 100%;
     border-radius: 10px;
     background: linear-gradient(90deg, #494544 0%, #504B4A 100%);
 }
