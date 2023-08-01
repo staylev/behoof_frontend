@@ -1,17 +1,29 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Card from "react-bootstrap/Card";
 import Cart from "./Cart";
 
 
-const TabMenu = () => {
-    const slider = useRef();
 
-    function Xscrol(event) {
-        event.preventDefault();
-        slider.current.scrollLeft += event.deltaY;
-    }
+const TabMenu = () => {
+
+    const elRef = useRef();
+    useEffect(() => {
+        const el = elRef.current;
+        if (el) {
+            const onWheel = e => {
+                if (e.deltaY == 0) return;
+                e.preventDefault();
+                el.scrollTo({
+                    left: el.scrollLeft + e.deltaY * 3,
+                    behavior: "smooth"
+                });
+            };
+            el.addEventListener("wheel", onWheel);
+            return () => el.removeEventListener("wheel", onWheel);
+        }
+    }, []);
 
     return (
       <div className="container mb-5">
@@ -26,7 +38,7 @@ const TabMenu = () => {
                 <div className="line2"></div>
                 <p className="text_title_category">ХОЛОДНЫЕ ЗАКУСКИ</p>
               </div>
-              <div className="cards mt-4" onWheel={Xscrol} ref={slider}>
+              <div className="cards mt-4" ref={elRef}>
                 {[1, 2, 3, 4, 5, 6, 7, 8].map((value, index) => (
                   <Cart></Cart>
                 ))}

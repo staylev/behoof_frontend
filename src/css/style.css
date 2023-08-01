@@ -415,7 +415,7 @@ a:hover {
 
 .cards {
     display: flex;
-    gap: 20px;
+
     overflow-x: scroll;
     scrollbar-width: 1px;
 
@@ -508,6 +508,7 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    transition: none;
 }
 
 .line3 {
@@ -522,9 +523,8 @@ a:hover {
 
 .sales {
     display: flex;
-    gap: 20px;
     overflow-x: scroll;
- 
+
 }
 
 .sales::-webkit-scrollbar {
@@ -567,4 +567,64 @@ a:hover {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+}
+
+.but_cart:hover {
+    background: #618967;
+    box-shadow: 0px 5px 45px 0px #618967
+}
+
+.but_cart:active {
+    background-color: #618967 !important;
+}
+
+.select_count_product {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.minus,
+.plus {
+    width: 62px;
+    height: 44px;
+    border-radius: 10px;
+    border: none;
+    background: #618967;
+    color: #FFF;
+    font-family: Gilroy;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.minus:hover {
+    background: #618967;
+    box-shadow: 0px 5px 45px 0px #618967
+}
+
+.plus:hover {
+    background: #618967;
+    box-shadow: 0px 5px 45px 0px #618967
+}
+
+.count_in_basket {
+    position: absolute;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    background-color: #618967;
+    top: -2%;
+    top: -4%;
+    left: 90%; 
+    color: #FFF;
+    font-family: Gilroy;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    line-height: 2.5;
 }

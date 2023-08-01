@@ -6,7 +6,7 @@ import sale1 from '../image/sale1.png'
 
 const SaleItem = () => {
     return (
-      <div  className=' col-10 col-sm-8 col-md-7 col-lg-5 col-xl-3x'>
+      <div  className=' col-10 col-sm-8 col-md-7 col-lg-5 col-xl-4 m-3'>
         <Card className="cart_sale">
           <Card.Img variant="top" src={sale1} />
           <Card.Body>
