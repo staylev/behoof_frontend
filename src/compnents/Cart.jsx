@@ -60,7 +60,7 @@ const Cart =  () => {
                     </div>
                 }
 
-            </Card>
+              </Card>
         </div>
     );
 };
