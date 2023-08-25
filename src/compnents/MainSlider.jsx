@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import {Carousel} from "react-bootstrap";
-import ban from "../image/баннер 1.png"
+import React, { useState } from 'react';
+import { Carousel } from "react-bootstrap";
+
 
 
 const MainSlider = () => {
@@ -12,29 +12,26 @@ const MainSlider = () => {
 
     return (
         <div className="slider" >
-                <Carousel activeIndex={index} onSelect={handleSelect}>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src={ban}
-                            alt="First slide"
-                        />
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src={ban}
-                            alt="Second slide"
-                        />
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src={ban}
-                            alt="Third slide"
-                        />
-                    </Carousel.Item>
-                </Carousel>
+            <Carousel activeIndex={index} onSelect={handleSelect}>
+                <Carousel.Item>
+                    <div
+                        className="slide_img"
+                        alt="First slide"
+                    />
+                </Carousel.Item>
+                <Carousel.Item>
+                    <div
+                        className="slide_img"
+                        alt="two slide"
+                    />
+                </Carousel.Item>
+                <Carousel.Item>
+                    <div
+                        className="slide_img"
+                        alt="tree slide"
+                    />
+                </Carousel.Item>
+            </Carousel>
         </div>
     );
 };
