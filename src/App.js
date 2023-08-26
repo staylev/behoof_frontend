@@ -5,7 +5,6 @@ import TabMenu from "./compnents/TabMenu";
 import SaleBlock from "./compnents/SaleBlock";
 import Abouts from "./compnents/abouts";
 import СоntactBlock from "./compnents/СоntactBlock";
-import {YMaps,Map } from "@pbe/react-yandex-maps";
 import React from "react";
 
 

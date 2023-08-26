@@ -9,6 +9,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import Button from "react-bootstrap/Button";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
+import AutchFоrm from "./forms/AutchFоrm";
 
 const Header = observer(() => {
     const { basket } = useContext(Context);
@@ -93,10 +94,10 @@ const Header = observer(() => {
 
 
                         <Offcanvas className="mobile_menu" show={show} onHide={handleClose} placement={"end"}>
-                            <Offcanvas.Header closeButton>
+                            <Offcanvas.Header closeButton className="ms-3">
                                 <Offcanvas.Title className=" text-white">Меню</Offcanvas.Title>
                             </Offcanvas.Header>
-                            <div className=" m-1 search_block_mobile">
+                            <div className=" m-3 search_block_mobile">
                                 <img src={Location_icon} className="location_icon" />
                                 <input
                                     type="text"
@@ -127,19 +128,7 @@ const Header = observer(() => {
                             fill
                         >
                             <Tab eventKey="autch" title="Автооризация">
-                                <Form className="m-4">
-                                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                                        <Form.Label className="form_text">Email</Form.Label>
-                                        <Form.Control className="form_input" type="email" placeholder="Введите свою почту" />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                                        <Form.Label className="form_text">Пароль</Form.Label>
-                                        <Form.Control className="form_input" type="password" placeholder="Введите свой пароль" />
-                                    </Form.Group>
-                                        <Button variant="primary" className="form_but">
-                                            Войти
-                                        </Button>
-                                </Form>
+                                <AutchFоrm></AutchFоrm>
                             </Tab>
                             <Tab eventKey="register" title="Рестрация">
                                 <Form className="m-4">
