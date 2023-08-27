@@ -9,7 +9,8 @@ const MainSlider = () => {
     const handleSelect = (selectedIndex) => {
         setIndex(selectedIndex);
     };
-
+       
+     
     return (
         <div className="slider" >
             <Carousel activeIndex={index} onSelect={handleSelect}>
@@ -25,6 +26,7 @@ const MainSlider = () => {
                         alt="two slide"
                     />
                 </Carousel.Item>
+                
                 <Carousel.Item>
                     <div
                         className="slide_img"

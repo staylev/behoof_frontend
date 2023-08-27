@@ -6,3 +6,9 @@ export const postLoginData = async (data) => {
     return await publicHost.post(url, data)
         .catch(error => error.response);
 }
+export const postRegisterData = async (data) => {
+    const url = "users/signup/";
+
+    return await publicHost.post(url, data)
+        .catch(error => error.response);
+}

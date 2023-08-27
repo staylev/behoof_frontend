@@ -938,6 +938,12 @@ a:hover {
     font-weight: 700;
     line-height: normal;
 }
+ .ph{
+    border-radius: 5%;
+    padding-left:15px ;
+ }
+
+  
 
 .text {
     color: #CFCFCF;

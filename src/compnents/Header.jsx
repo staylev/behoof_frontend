@@ -10,9 +10,11 @@ import Button from "react-bootstrap/Button";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import AutchFоrm from "./forms/AutchFоrm";
+import RegisterForm from "./forms/RegisterForm";
+import {NavLink} from "react-router-dom";
 
 const Header = observer(() => {
-    const { basket } = useContext(Context);
+    const { basket, user } = useContext(Context);
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -59,10 +61,20 @@ const Header = observer(() => {
                                 </div>
                             </Nav>
                             <Nav>
-                                <button className="but_cabinet" onClick={modalOpen}>
-                                    <FontAwesomeIcon icon={faUser} style={{ color: "#ffffff", }} />
-                                    Войти
-                                </button>
+                                {
+                                    user.isAutch==true ?
+                                        <button className="but_cabinet" >
+                                            <FontAwesomeIcon icon={faUser} style={{ color: "#ffffff", }} />
+                                            Профиль
+                                        </button>
+                                        :
+                                        <button className="but_cabinet" onClick={modalOpen}>
+                                            <FontAwesomeIcon icon={faUser} style={{ color: "#ffffff", }} />
+                                            Войти
+                                        </button>
+
+                                }
+
                             </Nav>
                             <Nav>
                                 <button className="basket_but">
@@ -91,8 +103,6 @@ const Header = observer(() => {
                                 </button>
                             </Nav>
                         </Navbar>
-
-
                         <Offcanvas className="mobile_menu" show={show} onHide={handleClose} placement={"end"}>
                             <Offcanvas.Header closeButton className="ms-3">
                                 <Offcanvas.Title className=" text-white">Меню</Offcanvas.Title>
@@ -108,7 +118,13 @@ const Header = observer(() => {
                             </div>
                             <ul className="mt-5 mobile_item_menu ">
                                 <li><a href="">Асортимент</a></li>
-                                <li><a href="#" onClick={modalOpen}>Профиль</a></li>
+                                <li>{
+                                   user.isAuth == true?
+                                       <NavLink to='/profile/'>Профиль </NavLink>
+                                       :
+                                       <a href="#" onClick={modalOpen}>Войти</a>
+                                }
+                                </li>
                                 <li><a href="">Корзина</a></li>
                                 <li><a href="">Контакты</a></li>
                             </ul>
@@ -131,35 +147,7 @@ const Header = observer(() => {
                                 <AutchFоrm></AutchFоrm>
                             </Tab>
                             <Tab eventKey="register" title="Рестрация">
-                                <Form className="m-4">
-                                    <Form.Group className="mb-3"  >
-                                        <Form.Label className="form_text">Фамилия</Form.Label>
-                                        <Form.Control className="form_input" type="text" placeholder="Введите свою фамилию" />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3"  >
-                                        <Form.Label className="form_text">Имя</Form.Label>
-                                        <Form.Control className="form_input" type="text" placeholder="Введите своё имя" />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                                        <Form.Label className="form_text">Email</Form.Label>
-                                        <Form.Control className="form_input" type="email" placeholder="Введите свою почту" />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                                        <Form.Label className="form_text">Телефон</Form.Label>
-                                        <Form.Control className="form_input" type="tel" placeholder="Введите свой номер телефона" />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                                        <Form.Label className="form_text">Пароль</Form.Label>
-                                        <Form.Control className="form_input" type="password" placeholder="Придумайте пароль" />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                                        <Form.Label className="form_text">Повтор пароля</Form.Label>
-                                        <Form.Control className="form_input" type="password" placeholder="Повторите пароль" />
-                                    </Form.Group>
-                                        <Button variant="primary" className="form_but">
-                                            Зарегистрироваться
-                                        </Button>
-                                </Form>
+                                 <RegisterForm></RegisterForm>
                             </Tab>
 
                         </Tabs>

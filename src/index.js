@@ -5,6 +5,7 @@ import './css/responsive.css'
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
 import BasketStore from "./store/BasketStore";
+import UserStore from "./store/UserStore.";
 
 export const Context = createContext(null);
 
@@ -14,11 +15,10 @@ root.render(
     <React.StrictMode>
         <Context.Provider value={{
             basket: new BasketStore(),
+            user:new UserStore(),
 
         }}>
-            <BrowserRouter>
-                <App/>
-            </BrowserRouter>
+        <App/>
         </Context.Provider>
     </React.StrictMode>
 );

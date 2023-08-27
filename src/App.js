@@ -1,26 +1,26 @@
 import Header from "./compnents/Header";
-import MainSlider from "./compnents/MainSlider";
+
 import Footer from "./compnents/Footer";
-import TabMenu from "./compnents/TabMenu";
-import SaleBlock from "./compnents/SaleBlock";
-import Abouts from "./compnents/abouts";
-import СоntactBlock from "./compnents/СоntactBlock";
+
 import React from "react";
+import MainPage from "./Pages/MainPage";
+import UserProfile from "./Pages/UserProfile";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 
 function App() {
     return (
         <div className="App">
-            <Header/>
-            <MainSlider/>
-            <TabMenu/>
-            <SaleBlock/>
-            <Abouts/>
-            <СоntactBlock/>
-            <Footer/>
-
-    </div>
-  );
+            <BrowserRouter>
+                <Header></Header>
+                <Routes>
+                     <Route path="/" element={<MainPage/>}/>
+                    <Route path="/profile/" element={<UserProfile/>}/>
+                </Routes>
+                <Footer></Footer>
+            </BrowserRouter>
+        </div>
+    );
 }
 
 export default App;
