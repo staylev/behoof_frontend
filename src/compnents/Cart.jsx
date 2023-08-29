@@ -7,9 +7,10 @@ import {faBasketShopping} from "@fortawesome/free-solid-svg-icons";
 import {Context} from "../index";
 
 
-const Cart =  () => {
+const Cart =  (props) => {
+    const data = props.data;
     const [countInBasket, setCountInBasket] = useState(0);
-    var price = 620;
+    var price = data.price;
 
     const {basket} = useContext(Context);
 
@@ -18,15 +19,14 @@ const Cart =  () => {
     return (
         <div className=" col-9 col-sm-7 col-md-6 col-lg-4 col-xl-3 m-3">
             <Card className="card position-relative">
-                <Card.Img variant="top" src={indeika}/>
+                <Card.Img variant="top" className="image_product" src={data.preview}/>
                 <Card.Body >
                     <div className="title_card">
-                        <Card.Title className="product_name">Ягненок</Card.Title>
-                        <p className="massa">Вес: 225 г</p>
+                        <Card.Title className="product_name">{data.title}</Card.Title>
+                        <p className="massa">Вес: {data.weight}</p>
                     </div>
                     <Card.Text className="product_description">
-                        Фаршированный гречневой кашей, курагой, апельсином и зеленым
-                        яблоком
+
                     </Card.Text>
                     {
                         countInBasket === 0 ?

@@ -5,7 +5,9 @@ export default class UserStore {
         this._isAuth = false;
         makeAutoObservable(this);
     }
-
+    setIsAuth(isAuth) {
+      this._isAuth = isAuth;
+    }
     get isAuth() {
         return this._isAuth;
     }
@@ -18,5 +20,14 @@ export default class UserStore {
     removeAccessToken() {
         this._isAuth = false;
         localStorage.removeItem("access");
+        localStorage.removeItem("refresh");
+    }
+    getRefreshToken() {
+        return {
+            refresh:localStorage.getItem("refresh")
+        };
+    }
+    setRefreshToken(refreshToken) {
+        localStorage.setItem("refresh", refreshToken);
     }
 }

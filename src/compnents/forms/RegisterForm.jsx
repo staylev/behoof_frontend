@@ -1,22 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import * as yup from "yup";
 import {Formik} from "formik";
-import {Form} from "react-bootstrap";
+import {Form, Spinner} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import {postLoginData, postRegisterData} from "../../http/userAPI";
 import InputMask from 'react-input-mask';
+import {PROFILE_PAGE} from "../../utils/consts";
 
 
 
 const RegisterForm = () => {
+    const [preload,setPreload] = useState(false);
     async function RegisterUser(data, actions) {
+        setPreload(true)
         if(data.password!== data.password_conf){
             actions.setFieldError("password_conf", "Пароли не совпадают")
             return null;
         }
         const response = await postRegisterData(data);
-        console.log(response.data.phone_number);
-
+        console.log(response);
+        setPreload(false)
         if (response.status!==201){
           if (response.status === 400) {
               if ('email' in response.data) {
@@ -25,9 +28,9 @@ const RegisterForm = () => {
               if ('phone_number' in response.data) {
                   actions.setFieldError("phone_number", "Этот номер телефона уже зарегистрирован")
               }
-
           }
         }
+
     }
 
 
@@ -37,8 +40,6 @@ const RegisterForm = () => {
         last_name: yup.string()
             .required("Обязательное поле"),
         email: yup.string().email("Некорректный email").max(150)
-            .required("Обязательное поле"),
-        phone_number: yup.string().max(11)
             .required("Обязательное поле"),
         password: yup.string().max(128)
             .required("Обязательное поле"),
@@ -143,9 +144,16 @@ const RegisterForm = () => {
                                 {errors.password_conf}
                             </Form.Control.Feedback>
                         </Form.Group>
-                        <Button variant="primary" type="submit" className="form_but">
-                            Зарегистрироваться
-                        </Button>
+                        {
+                            preload?
+                                <div className="w-100 d-flex">
+                                    <Spinner animation="border" className='m-auto preload'  />
+                                </div>
+                                :
+                                <Button variant="primary" type="submit" className="form_but">
+                                    Зарегистрироваться
+                                </Button>
+                        }
                     </Form>
                 )}
             </Formik>

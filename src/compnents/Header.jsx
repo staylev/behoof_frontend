@@ -11,9 +11,12 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import AutchFоrm from "./forms/AutchFоrm";
 import RegisterForm from "./forms/RegisterForm";
-import {NavLink} from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
+import {MAIN_PAGE, PROFILE_PAGE} from "../utils/consts";
+import {postRemoveRefreshToken} from "../http/userAPI";
 
 const Header = observer(() => {
+    const location = useLocation()
     const { basket, user } = useContext(Context);
     const [show, setShow] = useState(false);
 
@@ -24,14 +27,20 @@ const Header = observer(() => {
     const modalClose = () => setModalShow(false);
     const modalOpen = () => setModalShow(true);
 
-
+    async function removeToken() {
+        const response =await postRemoveRefreshToken(user.getRefreshToken())
+        if (response.status === 204){
+             user.removeAccessToken();
+             window.location.reload();
+        }
+    }
     return (
         <div>
             <header className="main_header">
 
                 <Navbar expand="xl" className="bg-body-tertiary pt-3">
                     <div className='container '>
-                        <Navbar.Brand href="#" className='logo mx-5'>behoof</Navbar.Brand>
+                        <Navbar.Brand href={MAIN_PAGE} className='logo mx-5'>behoof</Navbar.Brand>
                         <Navbar.Toggle onClick={handleShow} />
                         <Navbar>
                             <Nav>
@@ -39,10 +48,10 @@ const Header = observer(() => {
                                     <img src={Location_icon} className="location_icon" />
                                     <input
                                         type="text"
-                                        className="search"
+                                        className="search w-100"
                                         placeholder="Введите адрес доставки"
                                     />
-                                    <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#ffffff", }} />
+                                    <FontAwesomeIcon className='me-3' icon={faMagnifyingGlass} style={{ color: "#ffffff", }} />
                                 </div>
                             </Nav>
                             <Nav>
@@ -62,17 +71,25 @@ const Header = observer(() => {
                             </Nav>
                             <Nav>
                                 {
-                                    user.isAutch==true ?
-                                        <button className="but_cabinet" >
-                                            <FontAwesomeIcon icon={faUser} style={{ color: "#ffffff", }} />
-                                            Профиль
-                                        </button>
-                                        :
+                                    !user.isAuth ?
                                         <button className="but_cabinet" onClick={modalOpen}>
                                             <FontAwesomeIcon icon={faUser} style={{ color: "#ffffff", }} />
                                             Войти
                                         </button>
-
+                                        :
+                                        <>
+                                        {
+                                            location.pathname ===PROFILE_PAGE?
+                                                <button className="but_cabinet" onClick={removeToken} >
+                                                    Выйти
+                                                </button>
+                                                :
+                                                <button className="but_cabinet"   >
+                                                    <FontAwesomeIcon icon={faUser} style={{ color: "#ffffff", }} />
+                                                    <NavLink to={PROFILE_PAGE}>Профиль</NavLink>
+                                                </button>
+                                        }
+                                        </>
                                 }
 
                             </Nav>
@@ -104,27 +121,35 @@ const Header = observer(() => {
                             </Nav>
                         </Navbar>
                         <Offcanvas className="mobile_menu" show={show} onHide={handleClose} placement={"end"}>
-                            <Offcanvas.Header closeButton className="ms-3">
-                                <Offcanvas.Title className=" text-white">Меню</Offcanvas.Title>
+                            <Offcanvas.Header closeButton className="ms-auto">
+
                             </Offcanvas.Header>
-                            <div className=" m-3 search_block_mobile">
+                            <div className="search_block_mobile ">
                                 <img src={Location_icon} className="location_icon" />
                                 <input
                                     type="text"
-                                    className="search"
+                                    className="search w-100"
                                     placeholder="Введите адрес доставки"
                                 />
-                                <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#ffffff", }} />
+                                <FontAwesomeIcon className="me-3" icon={faMagnifyingGlass} style={{ color: "#ffffff", }} />
                             </div>
-                            <ul className="mt-5 mobile_item_menu ">
-                                <li><a href="">Асортимент</a></li>
+                            <ul className="mt-4 mobile_item_menu ">
                                 <li>{
-                                   user.isAuth == true?
-                                       <NavLink to='/profile/'>Профиль </NavLink>
-                                       :
-                                       <a href="#" onClick={modalOpen}>Войти</a>
+                                    !user.isAuth?
+                                        <a href="#" onClick={modalOpen}>Войти</a>
+                                        :
+                                        <>
+                                            {
+                                                location.pathname ===PROFILE_PAGE?
+                                                    <a href="#" onClick={removeToken}>Выйти</a>
+                                                    :
+                                                    <NavLink to={PROFILE_PAGE} onClick={handleClose}>Профиль</NavLink>
+                                            }
+                                        </>
+
                                 }
                                 </li>
+                                <li><a href="">Меню</a></li>
                                 <li><a href="">Корзина</a></li>
                                 <li><a href="">Контакты</a></li>
                             </ul>
@@ -144,7 +169,7 @@ const Header = observer(() => {
                             fill
                         >
                             <Tab eventKey="autch" title="Автооризация">
-                                <AutchFоrm></AutchFоrm>
+                                <AutchFоrm func={{modalClose}}></AutchFоrm>
                             </Tab>
                             <Tab eventKey="register" title="Рестрация">
                                  <RegisterForm></RegisterForm>

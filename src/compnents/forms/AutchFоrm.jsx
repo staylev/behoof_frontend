@@ -1,22 +1,29 @@
-import React from 'react';
+import React, {useContext, useState} from 'react';
 import * as yup from "yup";
 import {Formik} from "formik";
 import Button from "react-bootstrap/Button";
-import {Form} from "react-bootstrap";
+import {Form, Spinner} from "react-bootstrap";
 import {postLoginData} from "../../http/userAPI";
+import {Context} from "../../index";
 
-const AutchFоrm = () => {
+const AutchFоrm = (props) => {
+    const {user} = useContext(Context);
+    const [preload,setPreload] = useState(false);
+
+    const func = props.func;
     async function loginUser(data, actions) {
-        console.log(data);
+        setPreload(true);
 
-        const {
-            data: {access}, status,
-        } = await postLoginData(data);
-        if (status!==200){
+        const response = await postLoginData(data);
+        setPreload(false);
+
+        if (response.status !== 200) {
             actions.setFieldError("password", "Такого пользователя нет");
             return null;
         }
-        localStorage.setItem('access', access);
+        user.setAccessToken(response.data.access);
+        func.modalClose();
+        user.setRefreshToken(response.data.refresh);
     }
 
     const schema = yup.object().shape({
@@ -71,9 +78,18 @@ const AutchFоrm = () => {
                         </Form.Control.Feedback>
                     </Form.Group>
 
-                    <Button variant="primary" type="submit" className="form_but">
-                        Войти
-                    </Button>
+
+                    {
+                        preload?
+                            <div className="w-100 d-flex">
+                                <Spinner animation="border" className='m-auto preload'  />
+                            </div>
+                            :
+                            <Button variant="primary" type="submit" className="form_but">
+                                Войти
+                            </Button>
+                    }
+
                 </Form>)}
         </Formik>
     </div>);
