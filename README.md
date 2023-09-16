@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+# Food delivery "Behoof" (WebUI)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![html5](https://img.shields.io/badge/html5-E34F26?logo=html5&logoColor=white&style=for-the-badge)
+![css3](https://img.shields.io/badge/css3-1572B6?logo=css3&logoColor=white&style=for-the-badge)
+![bootstrap](https://img.shields.io/badge/bootstrap-7952B3?logo=bootstrap&logoColor=white&style=for-the-badge)
+![javascript](https://img.shields.io/badge/javascript-F7DF1E?logo=javascript&logoColor=white&style=for-the-badge)
+![jquery](https://img.shields.io/badge/jquery-0769AD?logo=jquery&logoColor=white&style=for-the-badge)
+![react](https://img.shields.io/badge/react-61DAFB?logo=react&logoColor=white&style=for-the-badge)
+![mobx](https://img.shields.io/badge/mobx-FF9955?logo=mobx&logoColor=white&style=for-the-badge)
+![axios](https://img.shields.io/badge/axios-5A29E4?logo=axios&logoColor=white&style=for-the-badge)
+![apollographql](https://img.shields.io/badge/apollographql-311C87?logo=apollographql&logoColor=white&style=for-the-badge)
 
-## Available Scripts
+## Cloud & CI/CD
 
-In the project directory, you can run:
+![docker](https://img.shields.io/badge/docker-2496ED?logo=docker&logoColor=white&style=for-the-badge&)
+![githubactions](https://img.shields.io/badge/githubactions-2088FF?logo=githubactions&logoColor=white&style=for-the-badge&)
 
-### `npm start`
+The web interface of the online academy "unicat", which interacts with the
+Unicat Web-API.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* GraphQL is used to get data
+* REST-Api is used to manage data
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+### Dependencies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[![api](https://img.shields.io/badge/Behoof_APi-092E20?logo=django&logoColor=white&style=for-the-badge)](https://github.com/Umbreella/behoof_backend)
 
-### `npm run build`
+* Clone project
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```git
+git clone https://github.com/staylev/behoof_frontend.git
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* Set values in **[.env](.env)**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* Create **nginx.conf**
 
-### `npm run eject`
+```
+server {
+    listen 80;
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    location / {
+        root /usr/share/nginx/html ;
+        index index.html index.htm ;
+        try_files $uri /index.html = 404 ;
+    }
+}
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* Build and run Docker
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```yaml
+version: "3"
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+services:
+  frontend-behoof:
+    build: .
+    image: [ your_image_name ]
+    ports:
+      - [ your_open_port ]:80
+    volumes:
+      - [ path_to_nginx.conf ]:/etc/nginx/conf.d/default.conf
+```
 
-## Learn More
+## Endpoints
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* Main
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```jsonpath
+[your_ip_address]/
+```
 
-### Code Splitting
+## Live Demo
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* [https://behoof.umbreella-dev.ru/](https://behoof.umbreella-dev.ru/)

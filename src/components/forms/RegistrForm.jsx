@@ -3,13 +3,12 @@ import * as yup from "yup";
 import {Formik} from "formik";
 import {Form, Spinner} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import {postLoginData, postRegisterData} from "../../http/userAPI";
+import {postRegisterData} from "../../http/UserAPI";
 import InputMask from 'react-input-mask';
-import {PROFILE_PAGE} from "../../utils/consts";
 
 
 
-const RegisterForm = () => {
+const RegistrForm = () => {
     const [preload,setPreload] = useState(false);
     async function RegisterUser(data, actions) {
         setPreload(true)
@@ -161,4 +160,4 @@ const RegisterForm = () => {
     );
 };
 
-export default RegisterForm;
+export default RegistrForm;

@@ -350,14 +350,16 @@ a:hover {
 }
 
 .value_basket {
-    position: absolute;
-    left: 79%;
+    width: 30px;
+    height: 30px;
     color: #403C3B;
+    background-color: white;
+    line-height: 30px;
+    border-radius: 100%;
     font-family: Gilroy;
-    font-size: 12px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 600;
-    line-height: normal;
 }
 
 .carousel {
@@ -522,14 +524,21 @@ a:hover {
     background-color: #618967;
 }
 
-.card {
+.small-card > .card {
     width: 100%;
+    height: 100%;
     border-radius: 10px;
     background: linear-gradient(90deg, #494544 0%, #504B4A 100%);
 }
 
-.card:hover {
+.small-card > .card:hover {
     box-shadow: 0px 30px 45px 0px rgba(43, 40, 40, 0.60);
+}
+
+.large-card > .card {
+    width: 100%;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #494544 0%, #504B4A 100%);
 }
 
 .title_card {
@@ -538,19 +547,60 @@ a:hover {
     justify-content: space-between;
 }
 
-.product_name {
+.title_card > a {
+    width: 80%;
+}
+
+.go-back,
+.go-back:hover {
     color: #FFF;
     font-family: Gilroy;
-    font-size: 20px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    width: 160px;
-    height: 80px;
+}
+
+.food-table {
+    color: #FFF;
+    font-family: Gilroy;
+    font-size: 12px;
+    font-style: normal;
+}
+
+.food-table td {
+    width: 25% !important;
+    padding-left: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.card-title {
+    color: #FFF;
+    font-family: Gilroy;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.product_name {
+    color: #FFF;
+    font-family: Gilroy;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    width: 100%;
+}
+
+.product_name:hover {
+    color: #618967;
 }
 
 .massa {
+    width: 35%;
     color: #FFF;
+    text-align: right;
     font-family: Gilroy;
     font-size: 12px;
     font-style: normal;
@@ -560,7 +610,6 @@ a:hover {
 
 .product_description {
     color: #CFCFCF;
-    width: 253px;
     font-family: Gilroy;
     font-size: 13px;
     font-style: normal;
@@ -577,7 +626,7 @@ a:hover {
 .price {
     color: #FFF;
     font-family: Gilroy;
-    font-size: 20px;
+    font-size: 22px;
     font-style: normal;
     font-weight: 600;
     line-height: normal
@@ -704,15 +753,13 @@ a:hover {
     width: 50px;
     height: 50px;
     background-color: #618967;
-    top: -2%;
-    top: -4%;
-    left: 90%;
+    top: -3%;
+    right: -6%;
     color: #FFF;
     font-family: Gilroy;
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
-    line-height: normal;
     position: absolute;
     text-align: center;
     line-height: 2.5;
@@ -842,15 +889,18 @@ a:hover {
 .map_1 {
     z-index: 0;
 }
-.main_map{
+
+.main_map {
     margin-top: -140px;
 }
+
 .maps {
     height: 800px;
     margin-top: -57px;
     z-index: 0;
 }
-.image_product{
+
+.image_product {
     height: 200px;
     object-fit: cover;
 }
@@ -928,12 +978,12 @@ a:hover {
     font-weight: 700;
     line-height: normal;
 }
- .ph{
-    border-radius: 5%;
-    padding-left:15px ;
- }
 
-  
+.ph {
+    border-radius: 5%;
+    padding-left: 15px;
+}
+
 
 .text {
     color: #CFCFCF;
@@ -1068,7 +1118,7 @@ a:hover {
     border: #6FA076;
 }
 
-.tooltip_costom{
+.tooltip_costom {
     color: #FFFFFF;
     text-align: center;
     font-family: Gilroy;
@@ -1079,17 +1129,20 @@ a:hover {
     text-align: center;
 }
 
-.nav-fill .nav-item, .nav-fill>.nav-link {
-  flex: 1 1 auto;
+.nav-fill .nav-item, .nav-fill > .nav-link {
+    flex: 1 1 auto;
 }
-.mobile_item_menu li{
+
+.mobile_item_menu li {
     font-size: 20px;
 }
-.preload{
+
+.preload {
     border: var(--bs-spinner-border-width) solid #6FA076;
     border-right-color: transparent
 }
-.all_menu{
+
+.all_menu {
     width: 137px;
     height: 50px;
     border-radius: 10px;
@@ -1106,19 +1159,22 @@ a:hover {
     justify-content: space-around;
     transition: none;
 }
-.load_page{
+
+.load_page {
     position: absolute;
     width: 100%;
     height: 100vh;
     background: #403C3B;
 }
-.errors_page{
+
+.errors_page {
     position: absolute;
     width: 100%;
     height: 100vh;
     background: #403C3B;
 }
-.errors_page h1{
+
+.errors_page h1 {
     color: #FFF;
     font-family: Gilroy;
     font-size: 30px;

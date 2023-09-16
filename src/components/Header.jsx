@@ -1,23 +1,28 @@
-import React, { useContext, useState } from "react";
+import React, {useContext, useState} from "react";
 import Location_icon from "../image/Location.svg";
-import { faBasketShopping, faMagnifyingGlass, faPhoneVolume, faUser } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { observer } from "mobx-react-lite";
-import { Context } from "../index";
-import { Form, Modal, Nav, Navbar } from "react-bootstrap";
+import {
+    faBasketShopping,
+    faMagnifyingGlass,
+    faPhoneVolume,
+    faUser
+} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {observer} from "mobx-react-lite";
+import {Context} from "../index";
+import {Form, Modal, Nav, Navbar} from "react-bootstrap";
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Button from "react-bootstrap/Button";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import AutchFоrm from "./forms/AutchFоrm";
-import RegisterForm from "./forms/RegisterForm";
+import AuthForm from "./forms/AuthForm";
+import RegistrForm from "./forms/RegistrForm";
 import {NavLink, useLocation} from "react-router-dom";
 import {MAIN_PAGE, PROFILE_PAGE} from "../utils/consts";
-import {postRemoveRefreshToken} from "../http/userAPI";
+import {postRemoveRefreshToken} from "../http/UserAPI";
 
 const Header = observer(() => {
     const location = useLocation()
-    const { basket, user } = useContext(Context);
+    const {basket, user} = useContext(Context);
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -28,41 +33,49 @@ const Header = observer(() => {
     const modalOpen = () => setModalShow(true);
 
     async function removeToken() {
-        const response =await postRemoveRefreshToken(user.getRefreshToken())
-        if (response.status === 204){
-             user.removeAccessToken();
-             window.location.reload();
+        const response = await postRemoveRefreshToken(user.getRefreshToken())
+        if (response.status === 204) {
+            user.removeAccessToken();
+            window.location.reload();
         }
     }
+
     return (
         <div>
             <header className="main_header">
 
                 <Navbar expand="xl" className="bg-body-tertiary pt-3">
                     <div className='container '>
-                        <Navbar.Brand href={MAIN_PAGE} className='logo mx-5'>behoof</Navbar.Brand>
-                        <Navbar.Toggle onClick={handleShow} />
+                        <Navbar.Brand href={MAIN_PAGE}
+                                      className='logo mx-5'>behoof</Navbar.Brand>
+                        <Navbar.Toggle onClick={handleShow}/>
                         <Navbar>
                             <Nav>
                                 <div className="search_block">
-                                    <img src={Location_icon} className="location_icon" />
+                                    <img src={Location_icon}
+                                         className="location_icon"/>
                                     <input
                                         type="text"
                                         className="search w-100"
                                         placeholder="Введите адрес доставки"
                                     />
-                                    <FontAwesomeIcon className='me-3' icon={faMagnifyingGlass} style={{ color: "#ffffff", }} />
+                                    <FontAwesomeIcon className='me-3'
+                                                     icon={faMagnifyingGlass}
+                                                     style={{color: "#ffffff",}}/>
                                 </div>
                             </Nav>
                             <Nav>
                                 <div className="contact_block">
                                     <div className="circle">
-                                        <FontAwesomeIcon className="contact_icon" icon={faPhoneVolume} />
+                                        <FontAwesomeIcon
+                                            className="contact_icon"
+                                            icon={faPhoneVolume}/>
                                     </div>
                                     <div>
                                         <p className="contact_text">Контакты: </p>
                                         <p>
-                                            <a className="contact_number" href="tel:+7 (917) 510-57-59">
+                                            <a className="contact_number"
+                                               href="tel:+7 (917) 510-57-59">
                                                 +7 (917) 510-57-59
                                             </a>
                                         </p>
@@ -72,23 +85,31 @@ const Header = observer(() => {
                             <Nav>
                                 {
                                     !user.isAuth ?
-                                        <button className="but_cabinet" onClick={modalOpen}>
-                                            <FontAwesomeIcon icon={faUser} style={{ color: "#ffffff", }} />
+                                        <button className="but_cabinet"
+                                                onClick={modalOpen}>
+                                            <FontAwesomeIcon icon={faUser}
+                                                             style={{color: "#ffffff",}}/>
                                             Войти
                                         </button>
                                         :
                                         <>
-                                        {
-                                            location.pathname ===PROFILE_PAGE?
-                                                <button className="but_cabinet" onClick={removeToken} >
-                                                    Выйти
-                                                </button>
-                                                :
-                                                <button className="but_cabinet"   >
-                                                    <FontAwesomeIcon icon={faUser} style={{ color: "#ffffff", }} />
-                                                    <NavLink to={PROFILE_PAGE}>Профиль</NavLink>
-                                                </button>
-                                        }
+                                            {
+                                                location.pathname === PROFILE_PAGE ?
+                                                    <button
+                                                        className="but_cabinet"
+                                                        onClick={removeToken}>
+                                                        Выйти
+                                                    </button>
+                                                    :
+                                                    <button
+                                                        className="but_cabinet">
+                                                        <FontAwesomeIcon
+                                                            icon={faUser}
+                                                            style={{color: "#ffffff",}}/>
+                                                        <NavLink
+                                                            to={PROFILE_PAGE}>Профиль</NavLink>
+                                                    </button>
+                                            }
                                         </>
                                 }
 
@@ -98,52 +119,55 @@ const Header = observer(() => {
                                     Корзина
                                     <div className="line"></div>
                                     {
-                                        basket.GetBasket === 0 ?
+                                        basket.countSum === 0 ?
                                             <FontAwesomeIcon
                                                 icon={faBasketShopping}
-                                                style={{ color: "#ffffff" }}
-                                            />
-                                            :
+                                                style={{
+                                                    color: "#ffffff",
+                                                    width: 25,
+                                                    height: 25,
+                                                }}
+                                            /> :
                                             <>
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    width="24"
-                                                    height="24"
-                                                    viewBox="0 0 24 24"
-                                                    fill="none"
-                                                >
-                                                    <circle cx="12" cy="12" r="12" fill="white" />
-                                                </svg>
-                                                <p className="value_basket">{basket.GetBasket}</p>
+                                                <p className="value_basket">
+                                                    {basket.countSum}
+                                                </p>
                                             </>
                                     }
                                 </button>
                             </Nav>
                         </Navbar>
-                        <Offcanvas className="mobile_menu" show={show} onHide={handleClose} placement={"end"}>
+                        <Offcanvas className="mobile_menu" show={show}
+                                   onHide={handleClose} placement={"end"}>
                             <Offcanvas.Header closeButton className="ms-auto">
 
                             </Offcanvas.Header>
                             <div className="search_block_mobile ">
-                                <img src={Location_icon} className="location_icon" />
+                                <img src={Location_icon}
+                                     className="location_icon"/>
                                 <input
                                     type="text"
                                     className="search w-100"
                                     placeholder="Введите адрес доставки"
                                 />
-                                <FontAwesomeIcon className="me-3" icon={faMagnifyingGlass} style={{ color: "#ffffff", }} />
+                                <FontAwesomeIcon className="me-3"
+                                                 icon={faMagnifyingGlass}
+                                                 style={{color: "#ffffff",}}/>
                             </div>
                             <ul className="mt-4 mobile_item_menu ">
                                 <li>{
-                                    !user.isAuth?
-                                        <a href="#" onClick={modalOpen}>Войти</a>
+                                    !user.isAuth ?
+                                        <a href="#"
+                                           onClick={modalOpen}>Войти</a>
                                         :
                                         <>
                                             {
-                                                location.pathname ===PROFILE_PAGE?
-                                                    <a href="#" onClick={removeToken}>Выйти</a>
+                                                location.pathname === PROFILE_PAGE ?
+                                                    <a href="#"
+                                                       onClick={removeToken}>Выйти</a>
                                                     :
-                                                    <NavLink to={PROFILE_PAGE} onClick={handleClose}>Профиль</NavLink>
+                                                    <NavLink to={PROFILE_PAGE}
+                                                             onClick={handleClose}>Профиль</NavLink>
                                             }
                                         </>
 
@@ -169,10 +193,10 @@ const Header = observer(() => {
                             fill
                         >
                             <Tab eventKey="autch" title="Автооризация">
-                                <AutchFоrm func={{modalClose}}></AutchFоrm>
+                                <AuthForm func={{modalClose}}></AuthForm>
                             </Tab>
                             <Tab eventKey="register" title="Рестрация">
-                                 <RegisterForm></RegisterForm>
+                                <RegistrForm></RegistrForm>
                             </Tab>
 
                         </Tabs>

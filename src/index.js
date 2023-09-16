@@ -1,9 +1,8 @@
 import React, {createContext} from 'react';
 import ReactDOM from 'react-dom/client';
-import './css/style.css';
-import './css/responsive.css'
+import './styles/style.css';
+import './styles/responsive.css'
 import App from './App';
-import {BrowserRouter} from "react-router-dom";
 import BasketStore from "./store/BasketStore";
 import UserStore from "./store/UserStore.";
 import {ApolloClient, ApolloProvider, InMemoryCache} from "@apollo/client";
