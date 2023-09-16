@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEnvelope, faLocationDot} from "@fortawesome/free-solid-svg-icons";
@@ -7,13 +7,12 @@ import {
     faSquareInstagram,
     faSquareYoutube,
     faVk,
-    faYoutube
 } from "@fortawesome/free-brands-svg-icons";
-import {Circle, MapContainer, Marker, Popup, TileLayer, Tooltip} from "react-leaflet";
+import {Circle, MapContainer, TileLayer, Tooltip} from "react-leaflet";
 import L from "leaflet";
 
 
-const СоntactBlock = () => {
+const ContactBlock = () => {
     const position = [54.989356, 73.368198];
     const position_ = [54.979430, 73.377490];
 
@@ -21,8 +20,7 @@ const СоntactBlock = () => {
         return L.icon({
             iconUrl: require('../image/marker.png'),
             iconSize: [80, 80]
-        })
-
+        });
     }
 
 
@@ -89,4 +87,4 @@ const СоntactBlock = () => {
     );
 };
 
-export default СоntactBlock;
+export default ContactBlock;

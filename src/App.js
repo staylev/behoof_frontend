@@ -1,15 +1,16 @@
-import Header from "./compnents/Header";
+import Header from "./components/Header";
 
-import Footer from "./compnents/Footer";
+import Footer from "./components/Footer";
 
 import React, {useContext, useEffect} from "react";
 import MainPage from "./Pages/MainPage";
 import UserProfile from "./Pages/UserProfile";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {getTokenCheck, postLoginData, postRefreshToken, postRegisterData} from "./http/userAPI";
+import {getTokenCheck, postLoginData, postRefreshToken, postRegisterData} from "./http/UserAPI";
 import {Context} from "./index";
-import {MAIN_PAGE, MENU_PAGE, PROFILE_PAGE} from "./utils/consts";
+import {FOOD_PAGE, MAIN_PAGE, MENU_PAGE, PROFILE_PAGE} from "./utils/consts";
 import MenuPage from "./Pages/MenuPage";
+import FoodPage from "./Pages/FoodPage";
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
                     <Route path={MAIN_PAGE} element={<MainPage/>}/>
                     <Route path={PROFILE_PAGE} element={<UserProfile/>}/>
                     <Route path={MENU_PAGE} element={<MenuPage/>}/>
+                    <Route path={FOOD_PAGE} element={<FoodPage/>}/>
                 </Routes>
                 <Footer></Footer>
             </BrowserRouter>

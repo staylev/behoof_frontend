@@ -1,13 +1,12 @@
-import {gql} from "@apollo/client";
-
-export const getAllCategory = gql`
-query allCategories {
-  allCategories {
-    edges {
-      node {
-        id
-        title
+export const getAllCategories = () => {
+    return `
+      allCategories (first: $firstAllCategories)  {
+        edges {
+          node {
+            id
+            title
+          }
+        }
       }
-    }
-  }
-}`
+    `;
+}

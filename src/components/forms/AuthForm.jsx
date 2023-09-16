@@ -3,10 +3,10 @@ import * as yup from "yup";
 import {Formik} from "formik";
 import Button from "react-bootstrap/Button";
 import {Form, Spinner} from "react-bootstrap";
-import {postLoginData} from "../../http/userAPI";
+import {postLoginData} from "../../http/UserAPI";
 import {Context} from "../../index";
 
-const AutchFоrm = (props) => {
+const AuthForm = (props) => {
     const {user} = useContext(Context);
     const [preload,setPreload] = useState(false);
 
@@ -95,4 +95,4 @@ const AutchFоrm = (props) => {
     </div>);
 };
 
-export default AutchFоrm;
+export default AuthForm;

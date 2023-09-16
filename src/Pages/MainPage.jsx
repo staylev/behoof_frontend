@@ -1,34 +1,66 @@
 import React from 'react';
-import Header from "../compnents/Header";
-import TabMenu from "../compnents/TabMenu";
-import SaleBlock from "../compnents/SaleBlock";
-import Abouts from "../compnents/abouts";
-import СоntactBlock from "../compnents/СоntactBlock";
-import Footer from "../compnents/Footer";
-import MainSlider from "../compnents/MainSlider";
-import {useQuery} from "@apollo/client";
-import {getAllCategory} from "../graphql/CategoryQuery";
-import Popular from "../compnents/Popular";
-import {getFood, getfood} from "../graphql/Fod";
-import PagePreload from "../compnents/PagePreload";
-import ErrorsPage from "../compnents/ErrorsPage";
+import Header from "../components/Header";
+import TabMenu from "../components/TabMenu";
+import SaleBlock from "../components/SaleBlock";
+import Abouts from "../components/abouts";
+import ContactBlock from "../components/ContactBlock";
+import MainSlider from "../components/MainSlider";
+import {gql, useQuery} from "@apollo/client";
+import FoodList from "../components/lists/FoodList";
+import {getAllFoods} from "../graphql/FoodQuery";
+import PagePreload from "../components/PagePreload";
+import ErrorsPage from "../components/ErrorsPage";
+import {getAllPromotions} from "../graphql/PromotionQuery";
+import {NavLink} from "react-router-dom";
+import {MENU_PAGE} from "../utils/consts";
+import {Container} from "react-bootstrap";
 
-const MainPage = () => {
-    const { loading, error, data } = useQuery(getFood);
+const MainPage = (props) => {
+    const queryAllFoods = getAllFoods();
+    const queryAllPromotions = getAllPromotions();
 
-    if (loading) return <PagePreload>   </PagePreload>
-    if (error) return <ErrorsPage></ErrorsPage>;
+    const query = gql`
+        query MainPageQuery (
+            $firstAllFoods: Int,
+            $firstAllPromotions: Int,
+        ) {
+            ${queryAllFoods}
+            ${queryAllPromotions}
+        }
+    `;
+
+    const {loading, error, data} = useQuery(query, {
+        variables: {
+            firstAllFoods: 5,
+            firstAllPromotions: 5,
+        },
+    });
+
+    if (loading || error) {
+        return <PagePreload/>;
+    }
 
     return (
-        <div >
+        <div>
             <MainSlider/>
-            <Popular data ={data?.allFoods.edges}></Popular>
-            <SaleBlock/>
-            <Abouts/>
-            <div className="main_map">
-                <СоntactBlock/>
-            </div>
 
+            <FoodList data={{
+                title: 'Популярное',
+                edges: data?.allFoods.edges,
+            }}/>
+
+            <Container>
+                <button className="w-100 mt-4 all_menu">
+                    <NavLink to={MENU_PAGE}>Посмотреть все позиции </NavLink>
+                </button>
+            </Container>
+
+            <SaleBlock data={data?.allPromotions.edges}/>
+            <Abouts/>
+
+            <div className="main_map">
+                <ContactBlock/>
+            </div>
         </div>
     );
 };
