@@ -8,9 +8,10 @@ import UserProfile from "./Pages/UserProfile";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {getTokenCheck, postLoginData, postRefreshToken, postRegisterData} from "./http/UserAPI";
 import {Context} from "./index";
-import {FOOD_PAGE, MAIN_PAGE, MENU_PAGE, PROFILE_PAGE} from "./utils/consts";
+import {FOOD_PAGE, MAIN_PAGE, MENU_PAGE, PROFILE_PAGE, SALES_PAGES} from "./utils/consts";
 import MenuPage from "./Pages/MenuPage";
 import FoodPage from "./Pages/FoodPage";
+import SalesPage from "./Pages/SalesPage";
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
                     <Route path={PROFILE_PAGE} element={<UserProfile/>}/>
                     <Route path={MENU_PAGE} element={<MenuPage/>}/>
                     <Route path={FOOD_PAGE} element={<FoodPage/>}/>
+                    <Route path={SALES_PAGES} element={<SalesPage/>}/>
                 </Routes>
                 <Footer></Footer>
             </BrowserRouter>

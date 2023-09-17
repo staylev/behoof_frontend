@@ -1,5 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import SaleItem from "./SaleItem";
+import {NavLink} from "react-router-dom";
+import {MENU_PAGE, SALES_PAGES} from "../utils/consts";
 
 const SaleBlock = (props) => {
     const {data} = props;
@@ -40,6 +42,9 @@ const SaleBlock = (props) => {
                     )
                 }
             </div>
+            <button className="w-100 mt-4 all_menu">
+                <NavLink to={SALES_PAGES}>Все акции </NavLink>
+            </button>
         </div>
     );
 };

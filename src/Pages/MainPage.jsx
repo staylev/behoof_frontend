@@ -49,11 +49,6 @@ const MainPage = (props) => {
                 edges: data?.allFoods.edges,
             }}/>
 
-            <Container>
-                <button className="w-100 mt-4 all_menu">
-                    <NavLink to={MENU_PAGE}>Посмотреть все позиции </NavLink>
-                </button>
-            </Container>
 
             <SaleBlock data={data?.allPromotions.edges}/>
             <Abouts/>

@@ -3,3 +3,5 @@ export const PROFILE_PAGE = '/profile/';
 export const MENU_PAGE = '/menu/';
 
 export const FOOD_PAGE = MENU_PAGE + ':foodId/';
+
+export const SALES_PAGES =   'sales'

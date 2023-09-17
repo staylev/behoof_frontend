@@ -115,7 +115,7 @@ const LargeFoodCard = (props) => {
                     </Card.Body>
                     {
                         countInBasket !== 0 &&
-                        <div className='count_in_basket'>
+                        <div className='count_in_basket_sc'>
                             {countInBasket}
                         </div>
                     }

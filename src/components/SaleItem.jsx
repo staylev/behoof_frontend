@@ -7,9 +7,9 @@ const SaleItem = (props) => {
     const {data: item} = props;
 
     return (
-        <div className=' col-10 col-sm-8 col-md-7 col-lg-5 col-xl-4 m-3'>
+        <div className='  col-10 col-sm-8 col-md-7 col-lg-5 col-xl-4 m-3'>
             <Card className="cart_sale">
-                <Card.Img variant="top" src={item.preview}/>
+                <Card.Img variant="top" className='sale_img' src={item.preview}/>
                 <Card.Body>
                     <Card.Title className='title_sale'>
                         {item.title}
