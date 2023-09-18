@@ -1,6 +1,9 @@
 export const getAllPromotions = () => {
     return `
-      allPromotions (first: $firstAllPromotions) {
+      allPromotions (
+        first: $firstAllPromotions,
+        after: $afterAllPromotions,
+      ) {
         edges {
           node {
             id
@@ -9,6 +12,10 @@ export const getAllPromotions = () => {
             endTime
             description
           }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
         }
       }
     `;

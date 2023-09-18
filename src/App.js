@@ -6,9 +6,20 @@ import React, {useContext, useEffect} from "react";
 import MainPage from "./Pages/MainPage";
 import UserProfile from "./Pages/UserProfile";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {getTokenCheck, postLoginData, postRefreshToken, postRegisterData} from "./http/UserAPI";
+import {
+    getTokenCheck,
+    postLoginData,
+    postRefreshToken,
+    postRegisterData
+} from "./http/UserAPI";
 import {Context} from "./index";
-import {FOOD_PAGE, MAIN_PAGE, MENU_PAGE, PROFILE_PAGE, SALES_PAGES} from "./utils/consts";
+import {
+    FOOD_PAGE,
+    MAIN_PAGE,
+    MENU_PAGE,
+    PROFILE_PAGE,
+    SALES_PAGES
+} from "./utils/consts";
 import MenuPage from "./Pages/MenuPage";
 import FoodPage from "./Pages/FoodPage";
 import SalesPage from "./Pages/SalesPage";
@@ -16,6 +27,7 @@ import SalesPage from "./Pages/SalesPage";
 
 function App() {
     const {user} = useContext(Context);
+
     async function checkToken() {
         const response = await getTokenCheck();
         if (response.status === 401) {
@@ -24,13 +36,15 @@ function App() {
                 user.setAccessToken(response_ref.data.access);
             }
         }
-        if (response.status === 200){
+        if (response.status === 200) {
             user.setIsAuth(true);
         }
     }
+
     useEffect(() => {
-        checkToken().then(() => {});
+        checkToken().then();
     });
+
     return (
 
         <div className="App">

@@ -4,14 +4,13 @@ import {Col, Container, Row} from "react-bootstrap";
 import {gql, useQuery} from "@apollo/client";
 import {getAllFoods, getFood} from "../graphql/FoodQuery";
 import PagePreload from "../components/PagePreload";
-import Card from "react-bootstrap/Card";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronLeft} from "@fortawesome/free-solid-svg-icons";
-import {Context} from "../index";
 import LargeFoodCard from "../components/cards/LargeFoodCard";
 import FoodList from "../components/lists/FoodList";
 import {MENU_PAGE} from "../utils/consts";
 import ContactBlock from "../components/ContactBlock";
+import {getAllRestaurants} from "../graphql/RestaurantQuery";
 
 const FoodPage = () => {
     const {foodId} = useParams();
@@ -19,6 +18,7 @@ const FoodPage = () => {
 
     const queryFood = getFood();
     const queryAllFoods = getAllFoods();
+    const queryAllRestaurants = getAllRestaurants();
     const query = gql`
         query FoodPageQuery (
             $foodId: ID!,
@@ -26,6 +26,7 @@ const FoodPage = () => {
         ) {
             ${queryFood}
             ${queryAllFoods}
+            ${queryAllRestaurants}
         }
     `;
 
@@ -75,7 +76,7 @@ const FoodPage = () => {
 
             </div>
 
-            <ContactBlock/>
+            <ContactBlock data={data.allRestaurants.edges}/>
         </>
     );
 };

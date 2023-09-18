@@ -2,6 +2,7 @@ import React, {useEffect, useRef} from 'react';
 import SaleItem from "./SaleItem";
 import {NavLink} from "react-router-dom";
 import {MENU_PAGE, SALES_PAGES} from "../utils/consts";
+import {Col} from "react-bootstrap";
 
 const SaleBlock = (props) => {
     const {data} = props;
@@ -31,20 +32,25 @@ const SaleBlock = (props) => {
 
     return (
         <div className='container'>
-            <div className="category_title mt-5  ">
+            <div className="category_title mt-5">
                 <div className="line2"></div>
                 <p className="text_title_category">АКЦИИ</p>
             </div>
             <div className='sales mt-3' ref={elRef}>
                 {
                     data.map(({node: item}) =>
-                        <SaleItem data={item}/>
+                        <Col key={item.id}
+                            className='col-10 col-sm-8 col-md-7 col-lg-5 col-xl-4 m-3'>
+                            <SaleItem data={item}/>
+                        </Col>
                     )
                 }
             </div>
-            <button className="w-100 mt-4 all_menu">
-                <NavLink to={SALES_PAGES}>Все акции </NavLink>
-            </button>
+            <NavLink to={SALES_PAGES}>
+                <button className="w-100 mt-4 all_menu">
+                    Все акции
+                </button>
+            </NavLink>
         </div>
     );
 };

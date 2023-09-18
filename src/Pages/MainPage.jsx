@@ -1,6 +1,4 @@
 import React from 'react';
-import Header from "../components/Header";
-import TabMenu from "../components/TabMenu";
 import SaleBlock from "../components/SaleBlock";
 import Abouts from "../components/abouts";
 import ContactBlock from "../components/ContactBlock";
@@ -9,23 +7,24 @@ import {gql, useQuery} from "@apollo/client";
 import FoodList from "../components/lists/FoodList";
 import {getAllFoods} from "../graphql/FoodQuery";
 import PagePreload from "../components/PagePreload";
-import ErrorsPage from "../components/ErrorsPage";
 import {getAllPromotions} from "../graphql/PromotionQuery";
-import {NavLink} from "react-router-dom";
-import {MENU_PAGE} from "../utils/consts";
-import {Container} from "react-bootstrap";
+import {getAllRestaurants} from "../graphql/RestaurantQuery";
+
 
 const MainPage = (props) => {
     const queryAllFoods = getAllFoods();
     const queryAllPromotions = getAllPromotions();
+    const queryAllRestaurants = getAllRestaurants();
 
     const query = gql`
         query MainPageQuery (
             $firstAllFoods: Int,
             $firstAllPromotions: Int,
+            $afterAllPromotions: String,
         ) {
             ${queryAllFoods}
             ${queryAllPromotions}
+            ${queryAllRestaurants}
         }
     `;
 
@@ -43,19 +42,13 @@ const MainPage = (props) => {
     return (
         <div>
             <MainSlider/>
-
             <FoodList data={{
                 title: 'Популярное',
-                edges: data?.allFoods.edges,
+                edges: data.allFoods.edges,
             }}/>
-
-
-            <SaleBlock data={data?.allPromotions.edges}/>
+            <SaleBlock data={data.allPromotions.edges}/>
             <Abouts/>
-
-            <div className="main_map">
-                <ContactBlock/>
-            </div>
+            <ContactBlock data={data.allRestaurants.edges}/>
         </div>
     );
 };

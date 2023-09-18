@@ -1,23 +1,28 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {getAllPromotions} from "../graphql/PromotionQuery";
 import {gql, useQuery} from "@apollo/client";
 import PagePreload from "../components/PagePreload";
 import SaleItem from "../components/SaleItem";
+import {Col, Row, Spinner} from "react-bootstrap";
+import {NavLink} from "react-router-dom";
+import {SALES_PAGES} from "../utils/consts";
+import PromotionsGrid from "../components/grids/PromotionsGrid";
 
 const SalesPage = () => {
     const queryAllPromotions = getAllPromotions();
 
     const query = gql`
-        query MainPageQuery (
+        query SalesPageQuery (
             $firstAllPromotions: Int,
+            $afterAllPromotions: String,
         ) {
             ${queryAllPromotions}
         }
     `;
 
-    const {loading, error, data} = useQuery(query, {
+    const {loading, error, data, fetchMore} = useQuery(query, {
         variables: {
-            firstAllPromotions: 5,
+            firstAllPromotions: 6,
         },
     });
 
@@ -26,20 +31,16 @@ const SalesPage = () => {
     }
 
     return (
-        <div>
-            <div className='container'>
-                <div className="category_title mt-5  ">
-                    <div className="line2"></div>
-                    <p className="text_title_category">АКЦИИ</p>
-                </div>
-                <div className='sales mt-3'>
-                    {
-                        data.map(({node: item}) =>
-                            <SaleItem data={item}/>
-                        )
-                    }
-                </div>
+        <div className='container mb-5'>
+            <div className="category_title my-5">
+                <div className="line2"></div>
+                <p className="text_title_category">АКЦИИ</p>
             </div>
+
+            <PromotionsGrid
+                data={data.allPromotions}
+                func={fetchMore}
+            />
         </div>
     );
 };

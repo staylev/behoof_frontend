@@ -43,7 +43,7 @@ const FoodList = (props) => {
             <div className="cards mt-4" ref={elRef}>
                 {
                     edges.map(({node: item}) =>
-                        <SmallFoodCard data={item}/>
+                        <SmallFoodCard key={item.id} data={item}/>
                     )
                 }
             </div>
