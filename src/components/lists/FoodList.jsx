@@ -3,7 +3,7 @@ import SmallFoodCard from "../cards/SmallFoodCard";
 import {NavLink} from "react-router-dom";
 import {MENU_PAGE} from "../../utils/consts";
 
-const FoodList = (props) => {
+const  FoodList = (props) => {
     const {
         data: {
             edges,
@@ -47,9 +47,6 @@ const FoodList = (props) => {
                     )
                 }
             </div>
-            <button className="w-100 mt-4 all_menu">
-                <NavLink to={MENU_PAGE}>Посмотреть все позиции </NavLink>
-            </button>
         </div>
     );
 };

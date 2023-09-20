@@ -1,6 +1,6 @@
 export const getAllCategories = () => {
     return `
-      allCategories (first: $firstAllCategories)  {
+      allCategories   {
         edges {
           node {
             id

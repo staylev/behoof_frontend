@@ -29,7 +29,7 @@ const PromotionsGrid = (props) => {
         <Row>
             {
                 data.map(({node: item}) =>
-                    <Col className="col-12 col-sm-6 col-xl-4 mb-4">
+                    <Col className=" col-12 col-sm-6 col-xl-4 mb-4">
                         <SaleItem data={item}/>
                     </Col>
                 )

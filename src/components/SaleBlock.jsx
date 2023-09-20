@@ -47,9 +47,7 @@ const SaleBlock = (props) => {
                 }
             </div>
             <NavLink to={SALES_PAGES}>
-                <button className="w-100 mt-4 all_menu">
-                    Все акции
-                </button>
+
             </NavLink>
         </div>
     );
